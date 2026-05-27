@@ -4,13 +4,20 @@ using UnityEngine;
 
 public class playerRecolectation : MonoBehaviour
 {
-    public int cantidadRecolectada = 0;
+    public int score = 2;
+    private UiManager uiManager;
 
-    void OnCollisionEnter(Collision col)
+    void Awake()
     {
-        if (col.gameObject.CompareTag("recolectable"))
+        uiManager = FindObjectOfType<UiManager>();
+    }
+
+    void OnTriggerEnter(Collider col)
+    {
+        if (col.CompareTag("Agarable"))
         {
-            cantidadRecolectada++;
+            score--; 
+            uiManager.SumarPunto(score);
             Destroy(col.gameObject);
         }
     }
