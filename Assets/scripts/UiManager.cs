@@ -7,31 +7,33 @@ public class UiManager : MonoBehaviour
 {
     public TextMeshProUGUI textoScore;
     public TextMeshProUGUI textoTimer;
-    public bool gano = false;
+
+    public GameObject panelWin;
+    public GameObject panelGameOver;
+
     public void SumarPunto(int puntaje)
     {
-            textoScore.text = "Puntos: " + puntaje.ToString();
-            if(puntaje == 0){
-                textoScore.text = "Ganaste";
-                gano = true;
-            }
+        textoScore.text = "Puntos: " + puntaje.ToString();
     }
 
     public void UpdateTimer(float tiempoRestante)
-    {       
-            if(gano == false && tiempoRestante != 0)
-            {
-                textoTimer.text = "Tiempo: " + tiempoRestante.ToString("F1");
-            }
-            else if(gano == false && tiempoRestante == 0){
-                textoTimer.text = "";
-                textoScore.text = "Perdiste";   
-            }
-            else
-            {
-                textoTimer.text = "";
-            }
-
+    { 
+        textoTimer.text = "Tiempo: " + tiempoRestante.ToString("F1");
     }
 
+    public void MostrarPantallaWin()
+    {
+        if (panelWin != null)
+        {
+            panelWin.SetActive(true);
+        }
+    }
+
+    public void MostrarPantallaGameOver()
+    {
+        if (panelGameOver != null)
+        {
+            panelGameOver.SetActive(true);
+        }
+    }
 }
